@@ -9,6 +9,8 @@ import string
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
 
+digit_value = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'a': 10, 'b': 11, 'c': 12, 'd': 13, 'e': 14, 'f': 15, 'g': 16, 'h': 17, 'i': 18, 'j': 19, 'k': 20, 'l': 21, 'm': 22, 'n': 23, 'o': 24, 'p': 25, 'q': 26, 'r': 27, 's': 28, 't': 29, 'u': 30, 'v': 31, 'w': 32, 'x': 33, 'y': 34, 'z': 35}
+value_digit = {0: '0', 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: 'a', 11: 'b', 12: 'c', 13: 'd', 14: 'e', 15: 'f', 16: 'g', 17: 'h', 18: 'i', 19: 'j', 20: 'k', 21: 'l', 22: 'm', 23: 'n', 24: 'o', 25: 'p', 26: 'q', 27: 'r', 28: 's', 29: 't', 30: 'u', 31: 'v', 32: 'w', 33: 'x', 34: 'y', 35: 'z'}
 
 def decode(digits, base):
     """Decode given digits in given base to number in base 10.
@@ -18,9 +20,23 @@ def decode(digits, base):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # TODO: Decode digits from binary (base 2)
+    digits_list = list(digits.lower())
+    digits_list.reverse()
+    # print(digits_list)
+    # go through the array and figure out what each 1 and 0 mean
+    total = 0
+    for i, value in enumerate(digits_list):
+        place_value = base ** i
+        # print(place_value, value)
+        total += digit_value[value] * place_value
+        # print(place_value, digit_value[value], digit_value[value] * place_value, total)
+    return total
+
+
     # ...
     # TODO: Decode digits from hexadecimal (base 16)
-    # ...
+    
+
     # TODO: Decode digits from any base (2 up to 36)
     # ...
 
@@ -35,7 +51,19 @@ def encode(number, base):
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
     # TODO: Encode number in binary (base 2)
-    # ...
+    place = 1
+    while place < number:
+        place *= base
+    place /= base
+    return_list = []
+    while place >= 1:
+        digit_counter = 0
+        while number - place >= 0:
+            number -= place
+            digit_counter += 1
+        return_list.append(value_digit[digit_counter])
+        place /= base   
+    return ''.join(return_list)
     # TODO: Encode number in hexadecimal (base 16)
     # ...
     # TODO: Encode number in any base (2 up to 36)
@@ -51,6 +79,9 @@ def convert(digits, base1, base2):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
+    decoded = decode(digits, base1)
+    encoded = encode(decoded, base2)
+    return encoded
     # TODO: Convert digits from base 2 to base 16 (and vice versa)
     # ...
     # TODO: Convert digits from base 2 to base 10 (and vice versa)
@@ -78,4 +109,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    print(convert('39', 16, 10))
+
