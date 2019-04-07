@@ -9,7 +9,7 @@ def factorial(n):
     # implement factorial_iterative and factorial_recursive below, then
     # change this to call your implementation to verify it passes all tests
     # return factorial_iterative(n)
-    return factorial_recursive(n)
+    return factorial_iterative(n)
 
 
 def factorial_iterative(n):
@@ -21,8 +21,7 @@ def factorial_iterative(n):
         factorial = factorial * (n-1)
         # increment n down by one 
         n -= 1
-    
-    
+    print(factorial)
     pass
     # once implemented, change factorial (above) to call factorial_iterative
     # to verify that your iterative implementation passes all tests
@@ -51,4 +50,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    factorial_iterative(4)
+    factorial_iterative(15)
