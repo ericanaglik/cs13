@@ -14,6 +14,15 @@ def factorial(n):
 
 def factorial_iterative(n):
     # TODO: implement the factorial function iteratively here
+    # while n is greater than zero
+    factorial = n
+    while n > 1:
+    # multiply n by one less than itself
+        factorial = factorial * (n-1)
+        # increment n down by one 
+        n -= 1
+    
+    
     pass
     # once implemented, change factorial (above) to call factorial_iterative
     # to verify that your iterative implementation passes all tests
@@ -42,3 +51,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    factorial_iterative(4)
