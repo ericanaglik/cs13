@@ -79,12 +79,13 @@ class LinkedList(object):
         if not (0 <= index < self.size):
             raise ValueError('List index out of range: {}'.format(index))
         # TODO: Find the node at the given index and return its data
-        node_count = 0
+        index_count = 0
         node = self.head
-        while node is not index:
-            node_count +=1
+        while (0 <= index_count < self.size):
+            if index_count == index:
+                return node
+            index_count += 1
             node = node.next
-        return node
 
     def insert_at_index(self, index, item):
         """Insert the given item at the given index in this linked list, or
@@ -144,14 +145,28 @@ class LinkedList(object):
         # We never found data satisfying quality, but have to return something
         return None  # Constant time to return None
 
-    def replace(self, old_item, new_item):
-        """Replace the given old_item in this linked list with given new_item
-        using the same node, or raise ValueError if old_item is not found.
+    def replace(self, old_data, new_data):
+        """Replace the given old_data in this linked list with given new_data
+        using the same node, or raise ValueError if old_data is not found.
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
-        # TODO: Find the node containing the given old_item and replace its
-        # data with new_item, without creating a new node object
-        pass
+        # TODO: Find the node containing the given old_data and replace its
+        # data with new_data, without creating a new node object
+        node = self.head  # Constant time to assign a variable reference
+        # Loop until the node is None, which is one node too far past the tail
+        while node is not None:  # Up to n iterations if we don't exit early
+            # Check if this node's data satisfies the given quality function
+            if node.data == old_data:  # Constant time to call quality function
+
+                found = node # found our node
+                break
+            # Skip to the next node
+            node = node.next  # Constant time to reassign a variable
+        # We never found data satisfying quality, but have to return something
+        if found == none:
+            return none
+
+        found.data = new_data
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
