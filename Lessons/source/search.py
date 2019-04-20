@@ -22,7 +22,6 @@ def linear_search_recursive(array, item, index=0):
         return index # found
     else:
         return linear_search_recursive(array, item, index + 1)
-    pass
     # once implemented, change linear_search to call linear_search_recursive
     # to verify that your recursive implementation passes all tests
 
@@ -68,5 +67,5 @@ def binary_search_recursive(array, item, left=None, right=None):
     # to verify that your recursive implementation passes all tests
 
 if __name__ == '__main__':
-    print(binary_search_iterative([1,2,3,4,5,6,7,8,9,10], 8))
+    print(binary_search_iterative([1,2,3,4,5,6,7,8,9,10], 4))
     
