@@ -31,10 +31,11 @@ class LinkedStack(object):
         """Return the number of items in this stack."""
         # TODO: Count number of items
         node = self.head
-        node_count = 0
+        item_count = 0
         while self.node != self.tail:
-            node_count += 1
+            item_count += 1
             node = node.next
+        return item_count
 
     def push(self, item):
         """Insert the given item on the top of this stack.
