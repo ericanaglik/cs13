@@ -86,7 +86,8 @@ class ArrayQueue(object):
         """Insert the given item at the back of this queue.
         Running time: O(???) – Why? [TODO]"""
         # TODO: Insert given item
-
+        self.list.append(item) 
+        
     def front(self):
         """Return the item at the front of this queue without removing it,
         or None if this queue is empty."""
