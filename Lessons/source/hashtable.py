@@ -118,6 +118,16 @@ class HashTable(object):
         # ...
         # TODO: If so, automatically resize to reduce the load factor
         # ...
+        node = bucket.find(lambda key_value: key_value[0] == key)
+        if node is not None:
+            bucket.delete(node)
+            self.size -= 1
+        bucket.append((key, value))
+        self.size += 1
+        if self.load_factor() > 0.75:
+            self._resize()
+
+
 
     def delete(self, key):
         """Delete the given key and its associated value, or raise KeyError.
