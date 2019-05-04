@@ -170,6 +170,16 @@ class HashTable(object):
             value = entry[1]
             self.set(key, value)
 
+def tower_of_hanoi(n, start, helper, finish):
+    if n = 1:
+        print('Move the disc {} to peg {}.'.format(start, finish))
+        return
+    
+    elif n > 1:
+        tower_of_hanoi(n - 1, start, finish, helper)
+        print('Move disk {} from peg {} to peg {}.'.format(n, start, helper))
+        tower_of_hanoi(n - 1, helper, start, finish)
+
 
 def test_hash_table():
     ht = HashTable(4)
