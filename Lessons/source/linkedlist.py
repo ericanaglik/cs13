@@ -107,7 +107,7 @@ class LinkedList(object):
             next_node = previous_node.next
 
             new_node.next = next_node
-			previous_node.next = new_node
+            previous_node.next = new_node
 
 
     def append(self, item):

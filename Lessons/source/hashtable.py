@@ -112,17 +112,18 @@ class HashTable(object):
             # In this case, the given key's value is being updated
             # Remove the old key-value entry from the bucket first
             bucket.delete(entry)
+            self.size -= 1
         # Insert the new key-value entry into the bucket in either case
         bucket.append((key, value))
         # TODO: Check if the load factor exceeds a threshold such as 0.75
         # ...
         # TODO: If so, automatically resize to reduce the load factor
         # ...
-        node = bucket.find(lambda key_value: key_value[0] == key)
-        if node is not None:
-            bucket.delete(node)
-            self.size -= 1
-        bucket.append((key, value))
+        # node = bucket.find(lambda key_value: key_value[0] == key)
+        # if node is not None:
+        #     bucket.delete(node)
+            
+        # bucket.append((key, value))
         self.size += 1
         if self.load_factor() > 0.75:
             self._resize()
@@ -141,6 +142,7 @@ class HashTable(object):
         if entry is not None:  # Found
             # Remove the key-value entry from the bucket
             bucket.delete(entry)
+            self.size -= 1
         else:  # Not found
             raise KeyError('Key not found: {}'.format(key))
 
@@ -169,16 +171,6 @@ class HashTable(object):
             key = entry[0]
             value = entry[1]
             self.set(key, value)
-
-def tower_of_hanoi(n, start, helper, finish):
-    if n = 1:
-        print('Move the disc {} to peg {}.'.format(start, finish))
-        return
-    
-    elif n > 1:
-        tower_of_hanoi(n - 1, start, finish, helper)
-        print('Move disk {} from peg {} to peg {}.'.format(n, start, helper))
-        tower_of_hanoi(n - 1, helper, start, finish)
 
 
 def test_hash_table():
