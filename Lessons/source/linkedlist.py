@@ -83,7 +83,7 @@ class LinkedList(object):
         node = self.head
         while (0 <= index_count < self.size):
             if index_count == index:
-                return node
+                return node.data
             index_count += 1
             node = node.next
 
@@ -103,11 +103,15 @@ class LinkedList(object):
         
         else:
             new_node = Node(item)
-            previous_node = self.get_at_index(index - 1)
+            previous_node = self.head
+            i = 0
+            while i != (index - 1) and previous_node is not None:
+                previous_node = previous_node.next
+                i += 1
             next_node = previous_node.next
-
             new_node.next = next_node
             previous_node.next = new_node
+            self.size += 1
 
 
     def append(self, item):
@@ -124,6 +128,7 @@ class LinkedList(object):
             self.tail.next = new_node
         # Update tail to new node regardless
         self.tail = new_node
+        self.size += 1
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
@@ -139,6 +144,7 @@ class LinkedList(object):
             new_node.next = self.head
         # Update head to new node regardless
         self.head = new_node
+        self.size += 1
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -166,6 +172,7 @@ class LinkedList(object):
         # TODO: Find the node containing the given old_data and replace its
         # data with new_data, without creating a new node object
         node = self.head  # Constant time to assign a variable reference
+        found = None
         # Loop until the node is None, which is one node too far past the tail
         while node is not None:  # Up to n iterations if we don't exit early
             # Check if this node's data satisfies the given quality function
@@ -176,8 +183,8 @@ class LinkedList(object):
             # Skip to the next node
             node = node.next  # Constant time to reassign a variable
         # We never found data satisfying quality, but have to return something
-        if found == none:
-            return none
+        if found == None:
+            raise ValueError("value not found!")
 
         found.data = new_data
 
@@ -203,6 +210,7 @@ class LinkedList(object):
                 node = node.next
         # Check if we found the given item or we never did and reached the tail
         if found:
+            self.size -= 1
             # Check if we found a node in the middle of this linked list
             if node is not self.head and node is not self.tail:
                 # Update the previous node to skip around the found node
