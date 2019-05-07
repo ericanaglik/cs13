@@ -5,9 +5,33 @@ class Set(object):
         self.size = 0
         self.hashtable = Hashtable()
 
+    def __iter__(self):
+        #allows it to be iterable
+        return self._generator()
+
+    def _generator(self):
+        #helper function for iterable
+        for item in self.hashtable.keys():
+            yield item
+
     def contains(self, item):
         return self.hashtable.contains(item)
 
     def add(self, item):
         if not self.contains(item):
             self.hashtable.set(item, None)
+
+    def remove(self, item):
+        if self.contains(item):
+            self.hashtable.delete(item, None)
+    
+    def union(self, other_set):
+        new_set = Set()
+        for item in other_set:
+            new_set.add(item)
+        for item in self:
+            new_set.add(item)
+        return new_set
+    
+
+
