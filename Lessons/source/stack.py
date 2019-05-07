@@ -27,12 +27,7 @@ class LinkedStack(object):
     def length(self):
         """Return the number of items in this stack."""
         # TODO: Count number of items
-        node = self.head
-        item_count = 0
-        while self.node != self.tail:
-            item_count += 1
-            node = node.next
-        return item_count
+        return self.list.length()
 
     def push(self, item):
         """Insert the given item on the top of this stack.
@@ -54,9 +49,9 @@ class LinkedStack(object):
         Running time: O(???) – Why? [TODO]"""
         # TODO: Remove and return top item, if any
         if self.list.is_empty() is True:
-            return ValueError
+            raise ValueError("stack is empty!")
         else:
-            item = peek(self.list)
+            item = self.peek()
             self.list.delete(item)
             return item
 
@@ -111,7 +106,6 @@ class ArrayStack(object):
             return None
         else:
             return self.list.pop()
-
 
 # Implement LinkedStack and ArrayStack above, then change the assignment below
 # to use each of your Stack implementations to verify they each pass all tests
