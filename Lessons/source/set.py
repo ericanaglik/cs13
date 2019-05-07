@@ -32,6 +32,26 @@ class Set(object):
         for item in self:
             new_set.add(item)
         return new_set
-    
+
+    def intersection(self, other_set):
+        new_set = Set()
+        for item in other_set:
+            if self.contains(item):
+                new_set.add(item)
+        return new_set
+
+    def difference(self, other_set): 
+        new_set = Set()
+        for item in self:
+            if not other_set.contains(item):
+                new_set.add(item)
+        return new_set
+
+    def is_subset(self, other_set):
+        for item in self:
+            if not other_set.contains(item):
+                return False
+        return True
+            
 
 
