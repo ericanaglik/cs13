@@ -39,6 +39,18 @@ class BinaryTreeNode(object):
         ...
         # Return one more than the greater of the left height and right height
         ...
+        left_height = 0
+        right_height = 0
+
+        if self.left:
+            left_height = 1 + self.left.height()
+        if self.right:
+            right_height = 1 + self.right.height()
+        
+        if left_height > right_height:
+            return left_height
+        else:
+            return right_height
 
 
 class BinarySearchTree(object):
