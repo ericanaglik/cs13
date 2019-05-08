@@ -77,6 +77,7 @@ class BinarySearchTree(object):
         TODO: Best and worst case running time: ??? under what conditions?"""
         # TODO: Check if root node has a value and if so calculate its height
         ...
+        return self.root.height()
 
     def contains(self, item):
         """Return True if this binary search tree contains the given item.
