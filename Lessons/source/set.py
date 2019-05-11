@@ -1,9 +1,12 @@
-from hashtable import hashtable
+from hashtable import HashTable
 
 class Set(object):
     def __init__(self, items = None):
         self.size = 0
-        self.hashtable = Hashtable()
+        self.hashtable = HashTable()
+        if items is not None:
+            for item in items:
+                self.add(item)
 
     def __iter__(self):
         #allows it to be iterable
@@ -52,3 +55,8 @@ class Set(object):
             if not other_set.contains(item):
                 return False
         return True
+
+
+if __name__ == "__main__":
+    s = Set([1,2,3,4])
+    print(s.hashtable.keys())
