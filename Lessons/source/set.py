@@ -17,10 +17,10 @@ class Set(object):
         for item in self.hashtable.keys():
             yield item
 
-    def __len(self)__:
+    def __len__(self):
         return self.size
 
-    def contains(self, item):
+    def __contains__(self, item):
         return self.hashtable.contains(item)
 
     def add(self, item):
