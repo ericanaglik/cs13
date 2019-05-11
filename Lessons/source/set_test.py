@@ -68,7 +68,18 @@ class SetTest(unittest.TestCase):
         assert s.__contains__(2.5) == False
         assert s.__contains__(3) == True
 
-    
+    def union_test(self):
+        a = Set([1, 3, 5, 7])
+        b = Set([2, 4, 6, 8])
+
+        a_and_b = a.union(b)
+
+        assert a_and_b.__contains__(4) == True
+        assert a_and_b.__contains__(5) == True
+        assert a_and_b.__contains__(8) == True
+        assert a_and_b.__contains__(10) == False
+        assert a_and_b.__contains__(0) == False
+
 
 
 
