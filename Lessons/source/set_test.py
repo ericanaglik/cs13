@@ -69,16 +69,77 @@ class SetTest(unittest.TestCase):
         assert s.__contains__(3) == True
 
     def union_test(self):
-        a = Set([1, 3, 5, 7])
-        b = Set([2, 4, 6, 8])
+        a = Set([1, 2, 3, 4, 5])
+        b = Set([4, 5, 6, 7, 8])
 
-        a_and_b = a.union(b)
+        a_union_b = a.union(b)
 
-        assert a_and_b.__contains__(4) == True
-        assert a_and_b.__contains__(5) == True
-        assert a_and_b.__contains__(8) == True
-        assert a_and_b.__contains__(10) == False
-        assert a_and_b.__contains__(0) == False
+        assert a_union_b.__contains__(8) == True
+        assert a_union_b.__contains__(2) == True
+        assert a_union_b.__contains__(4) == True
+        assert a_union_b.__contains__(0) == False
+        assert a_union_b.__contains__(9) == False
+
+    def intersection_test(self):
+        a = Set([1, 2, 3, 4, 5])
+        b = Set([4, 5, 6, 7, 8])
+
+        a_intersection_b = a.intersection(b)
+
+        assert a_intersection_b.__contains__(1) == False
+        assert a_intersection_b.__contains__(8) == False
+        assert a_intersection_b.__contains__(4) == True
+        assert a_intersection_b.__contains__(5) == True
+
+        a.add('a')
+        b.add('a')
+        a.add(2.5)
+
+        a_intersection_b = a.intersection(b)
+
+        assert a_intersection_b.__contains__('a') == True
+        assert a_intersection_b.__contains__(2.5) == False
+
+    def difference_test(self):
+        a = Set([1, 2, 3, 4, 5])
+        b = Set([4, 5, 6, 7, 8])
+
+        a_difference_b = a.difference(b)
+
+        assert a_difference_b.__contains__(4) == False
+        assert a_difference_b.__contains__(5) == False
+        assert a_difference_b.__contains__(1) == True
+        assert a_difference_b.__contains__(8) == True
+
+        a.remove(4)
+
+        a_difference_b = a.difference(b)
+
+        assert a_difference_b.__contains(4) == True
+
+    def is_subset_test(self):
+        a = Set([1, 2, 3])
+        b = Set([1, 2, 4, 5])
+
+        assert a.is_subset(b) == False
+
+        b.add(3)
+        assert a.is_subset(b) == True
+        a.remove(3)
+        assert a.is_subset(b) == True
+        a.add(3)
+        a.add(4)
+        a.add(5)
+        assert a.is_subset(b) == True
+        a.add('b')
+        assert a.is_subset(b) == False
+
+
+
+
+
+
+
 
 
 
