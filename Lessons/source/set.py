@@ -26,10 +26,12 @@ class Set(object):
     def add(self, item):
         if not self.__contains__(item):
             self.hashtable.set(item, None)
+        self.size += 1
 
     def remove(self, item):
         if self.__contains__(item):
             self.hashtable.delete(item, None)
+        self.size -= 1
     
     def union(self, other_set):
         new_set = Set()
@@ -47,7 +49,7 @@ class Set(object):
         return new_set
 
     def difference(self, other_set): 
-        new_set = Set()
+        new_set = Set() 
         for item in self:
             if not other_set.__contains__(item):
                 new_set.add(item)
@@ -60,6 +62,6 @@ class Set(object):
         return True
 
 
-if __name__ == "__main__":
-    s = Set([1,2,3,4])
-    print(s.hashtable.keys())
+# if __name__ == "__main__":
+#     s = Set([1,2,3,4])
+#     print(s.hashtable.keys())
