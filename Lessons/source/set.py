@@ -12,23 +12,23 @@ class Set(object):
         #allows it to be iterable
         return self._generator()
 
-    def _generator(self):
-        #helper function for iterable
-        for item in self.hashtable.keys():
-            yield item
-
     def __len__(self):
         return self.size
 
     def __contains__(self, item):
         return self.hashtable.contains(item)
 
+    def _generator(self):
+        #helper function for iterable
+        for item in self.hashtable.keys():
+            yield item
+
     def add(self, item):
-        if not self.contains(item):
+        if not self.__contains__(item):
             self.hashtable.set(item, None)
 
     def remove(self, item):
-        if self.contains(item):
+        if self.__contains__(item):
             self.hashtable.delete(item, None)
     
     def union(self, other_set):
@@ -42,20 +42,20 @@ class Set(object):
     def intersection(self, other_set):
         new_set = Set()
         for item in other_set:
-            if self.contains(item):
+            if self.__contains__(item):
                 new_set.add(item)
         return new_set
 
     def difference(self, other_set): 
         new_set = Set()
         for item in self:
-            if not other_set.contains(item):
+            if not other_set.__contains__(item):
                 new_set.add(item)
         return new_set
 
     def is_subset(self, other_set):
         for item in self:
-            if not other_set.contains(item):
+            if not other_set.__contains__(item):
                 return False
         return True
 

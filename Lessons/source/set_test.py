@@ -13,6 +13,7 @@ class SetTest(unittest.TestCase):
         assert len(other_set) == 5
 
     def test_contains_and_len(self):
+        s = Set()
         assert s.size == 0
         assert len(s) == 0
         assert s.__contains__(2) == False
@@ -57,16 +58,16 @@ class SetTest(unittest.TestCase):
         assert s.__contains__(2.5) == True
         assert s.__contains__(7) == False
         s.remove('a')
+        assert s.__contains__('a') == False
         assert s.size == 6
         assert len(s) == 6
-        assert s.__contains__('a') == False
         s.remove('None')
         s.remove('2.5')
-        assert s.size == 4
-        assert len(s) == 4
         assert s.__contains__('None') == False
         assert s.__contains__(2.5) == False
         assert s.__contains__(3) == True
+        assert s.size == 4
+        assert len(s) == 4
 
     def test_union(self):
         a = Set([1, 2, 3, 4, 5])
