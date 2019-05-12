@@ -3,7 +3,7 @@ import unittest
 
 class SetTest(unittest.TestCase):
 
-    def init_and_contains_test(self):
+    def test_init_and_contains(self):
         s = Set()
         assert s.size == 0
         assert len(s) == 0
@@ -12,7 +12,7 @@ class SetTest(unittest.TestCase):
         assert other_set.size == 5
         assert len(other_set) == 5
 
-    def contains_and_len_test(self):
+    def test_contains_and_len(self):
         assert s.size == 0
         assert len(s) == 0
         assert s.__contains__(2) == False
@@ -28,7 +28,7 @@ class SetTest(unittest.TestCase):
         assert s.__contains__(2) == False
         assert s.__contains__(4) == True
 
-    def add_test(self):
+    def test_add(self):
         s = Set([1, 3, 5, 9])
         assert s.size == 4
         assert len(s) == 4
@@ -45,7 +45,7 @@ class SetTest(unittest.TestCase):
         assert len(s) == 6
         assert s.__contains__('a') == True
 
-    def remove_test(self):
+    def test_remove(self):
         s = Set([3, 6, 8, 10, 'a', None, 'i', 2.5])
         assert s.size == 8
         assert len(s) == 8
@@ -68,7 +68,7 @@ class SetTest(unittest.TestCase):
         assert s.__contains__(2.5) == False
         assert s.__contains__(3) == True
 
-    def union_test(self):
+    def test_union(self):
         a = Set([1, 2, 3, 4, 5])
         b = Set([4, 5, 6, 7, 8])
 
@@ -80,7 +80,7 @@ class SetTest(unittest.TestCase):
         assert a_union_b.__contains__(0) == False
         assert a_union_b.__contains__(9) == False
 
-    def intersection_test(self):
+    def test_intersection(self):
         a = Set([1, 2, 3, 4, 5])
         b = Set([4, 5, 6, 7, 8])
 
@@ -100,7 +100,7 @@ class SetTest(unittest.TestCase):
         assert a_intersection_b.__contains__('a') == True
         assert a_intersection_b.__contains__(2.5) == False
 
-    def difference_test(self):
+    def test_difference(self):
         a = Set([1, 2, 3, 4, 5])
         b = Set([4, 5, 6, 7, 8])
 
@@ -117,7 +117,7 @@ class SetTest(unittest.TestCase):
 
         assert a_difference_b.__contains(4) == True
 
-    def is_subset_test(self):
+    def test_is_subset(self):
         a = Set([1, 2, 3])
         b = Set([1, 2, 4, 5])
 
