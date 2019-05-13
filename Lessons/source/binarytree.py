@@ -96,7 +96,7 @@ class BinarySearchTree(object):
         # Find a node with the given item, if any
         node = self._find_node_recursive(item, self.root)
         # TODO: Return the node's data if found, or None
-        return node.data if ... else None
+        return node.data if node else None
 
     def insert(self, item):
         """Insert the given item in order into this binary search tree.
@@ -105,22 +105,22 @@ class BinarySearchTree(object):
         # Handle the case where the tree is empty
         if self.is_empty():
             # TODO: Create a new root node
-            self.root = ...
+            self.root = new_node
             # TODO: Increase the tree size
-            self.size ...
+            self.size += 1
             return
         # Find the parent node of where the given item should be inserted
         parent = self._find_parent_node_recursive(item, self.root)
         # TODO: Check if the given item should be inserted left of parent node
-        if ...:
+        if item < parent.data:
             # TODO: Create a new node and set the parent's left child
-            parent.left = ...
+            parent.left = new_node
         # TODO: Check if the given item should be inserted right of parent node
-        elif ...:
+        elif item > parent.data:
             # TODO: Create a new node and set the parent's right child
-            parent.right = ...
+            parent.right = new_node
         # TODO: Increase the tree size
-        self.size ...
+        self.size += 1
 
     def _find_node_iterative(self, item):
         """Return the node containing the given item in this binary search tree,
