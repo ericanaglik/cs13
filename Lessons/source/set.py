@@ -30,7 +30,7 @@ class Set(object):
 
     def remove(self, item):
         if self.__contains__(item):
-            self.hashtable.delete(item, None)
+            self.hashtable.delete(item)
         self.size -= 1
     
     def union(self, other_set):

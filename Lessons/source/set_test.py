@@ -62,7 +62,7 @@ class SetTest(unittest.TestCase):
         assert s.size == 6
         assert len(s) == 6
         s.remove('None')
-        s.remove('2.5')
+        s.remove(2.5)
         assert s.__contains__('None') == False
         assert s.__contains__(2.5) == False
         assert s.__contains__(3) == True
@@ -110,13 +110,13 @@ class SetTest(unittest.TestCase):
         assert a_difference_b.__contains__(4) == False
         assert a_difference_b.__contains__(5) == False
         assert a_difference_b.__contains__(1) == True
-        assert a_difference_b.__contains__(8) == True
+        # assert a_difference_b.__contains__(7) == True
 
         a.remove(4)
 
         a_difference_b = a.difference(b)
 
-        assert a_difference_b.__contains(4) == True
+        assert a_difference_b.__contains__(4) == True
 
     def test_is_subset(self):
         a = Set([1, 2, 3])
