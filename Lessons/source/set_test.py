@@ -110,9 +110,9 @@ class SetTest(unittest.TestCase):
         assert a_difference_b.__contains__(4) == False
         assert a_difference_b.__contains__(5) == False
         assert a_difference_b.__contains__(1) == True
-        # assert a_difference_b.__contains__(7) == True
+        assert a_difference_b.__contains__(2) == True
 
-        a.remove(4)
+        b.remove(4)
 
         a_difference_b = a.difference(b)
 
