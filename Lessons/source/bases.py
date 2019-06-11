@@ -9,8 +9,7 @@ import string
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
 
-digit_value = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'a': 10, 'b': 11, 'c': 12, 'd': 13, 'e': 14, 'f': 15, 'g': 16, 'h': 17, 'i': 18, 'j': 19, 'k': 20, 'l': 21, 'm': 22, 'n': 23, 'o': 24, 'p': 25, 'q': 26, 'r': 27, 's': 28, 't': 29, 'u': 30, 'v': 31, 'w': 32, 'x': 33, 'y': 34, 'z': 35}
-value_digit = {0: '0', 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: 'a', 11: 'b', 12: 'c', 13: 'd', 14: 'e', 15: 'f', 16: 'g', 17: 'h', 18: 'i', 19: 'j', 20: 'k', 21: 'l', 22: 'm', 23: 'n', 24: 'o', 25: 'p', 26: 'q', 27: 'r', 28: 's', 29: 't', 30: 'u', 31: 'v', 32: 'w', 33: 'x', 34: 'y', 35: 'z'}
+hex_dict = {'10': 'a', '11': 'b', '12': 'c', '13': 'd', '14': 'e', '15': 'f', '16': 'g', '17' : 'h', '18': 'i', '19': 'j', '20': 'k',  '21': 'l', '22': 'm', '23': 'n', '24': 'o', '25': 'p', '26': 'q', '27': 'r', '28': 's', '29': 't', '30': 'u',  '31': 'v', '32': 'w', '33': 'x', '34': 'y', '35': 'z' }
 
 def decode(digits, base):
     """Decode given digits in given base to number in base 10.
@@ -89,7 +88,40 @@ def convert(digits, base1, base2):
     # TODO: Convert digits from base 10 to base 16 (and vice versa)
     # ...
     # TODO: Convert digits from any base to any base (2 up to 36)
+    result = decode(digits, base1)
+    return encode(result, base2)
     # ...
+
+def convert_fractional(digits, base1, base2):
+    #12.35
+    # begin with the decimal fraction and multiply by 2
+    # grab the whole number from the result and add to the right of the point
+    # convert to string
+    # string split at decimal 
+    # create a var for everything right of the decimal and then multiply by 2
+
+    # split string at decimal
+    digits = digits.split(".")
+    # convert the whole number to binary 
+    whole = convert(digits[0])
+
+    # cleaning up decimal so I can convert to binary 
+    deci = "." + digits[1]
+    deci = float(deci)
+
+    to_binary = ""
+    
+    while deci != 0:
+        deci *= 2
+        if deci > 1:
+            to_binary += "1"
+            deci - 1
+        else:
+            to_binary += "0"
+    return whole + "." + to_binary
+
+
+def convert_negative(digits, base1, base2):
 
 
 def main():
@@ -110,5 +142,5 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    print(convert('39', 16, 10))
+    print(convert_fractional(".625", 10, 2))
 

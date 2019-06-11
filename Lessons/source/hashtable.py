@@ -115,18 +115,14 @@ class HashTable(object):
             self.size -= 1
         # Insert the new key-value entry into the bucket in either case
         bucket.append((key, value))
+        self.size += 1
+        if self.load_factor() > 0.75:
+            self._resize()
         # TODO: Check if the load factor exceeds a threshold such as 0.75
         # ...
         # TODO: If so, automatically resize to reduce the load factor
         # ...
-        # node = bucket.find(lambda key_value: key_value[0] == key)
-        # if node is not None:
-        #     bucket.delete(node)
-            
-        # bucket.append((key, value))
-        self.size += 1
-        if self.load_factor() > 0.75:
-            self._resize()
+        
 
 
 
