@@ -103,7 +103,7 @@ def convert_fractional(digits, base1, base2):
     # split string at decimal
     digits = digits.split(".")
     # convert the whole number to binary 
-    whole = convert(digits[0])
+    whole = convert(digits[0], 10, 2)
 
     # cleaning up decimal so I can convert to binary 
     deci = "." + digits[1]
@@ -113,15 +113,16 @@ def convert_fractional(digits, base1, base2):
     
     while deci != 0:
         deci *= 2
-        if deci > 1:
+        if deci >= 1:
             to_binary += "1"
-            deci - 1
+            deci -= 1
         else:
             to_binary += "0"
     return whole + "." + to_binary
 
 
 def convert_negative(digits, base1, base2):
+    pass
 
 
 def main():
