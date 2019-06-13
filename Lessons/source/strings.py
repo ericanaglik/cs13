@@ -12,7 +12,7 @@ def contains(text, pattern):
     text_index = 0
     pattern_index = 0
     match = 0
-    
+
     while text_index <= len(text)-1 and found is False:
     
         if text[text_index] == pattern[pattern_index]:
@@ -31,14 +31,37 @@ def contains(text, pattern):
     return found
 
 
-
-
 def find_index(text, pattern):
     """Return the starting index of the first occurrence of pattern in text,
     or None if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_index here (iteratively and/or recursively)
+
+    found = None
+    text_index = 0
+    pattern_index = 0
+    match = 0
+
+    if pattern == "":
+        return match
+    
+    while text_index <= len(text)-1 and found is None:
+    
+        if text[text_index] == pattern[pattern_index]:
+            if pattern_index == 0:
+                match = text_index
+            if pattern_index == len(pattern)-1:
+                found = match
+            text_index += 1
+            pattern_index += 1
+        else:
+            if pattern_index > 0:
+                text_index = match + 1
+            else:
+                text_index += 1
+            pattern_index = 0
+    return found
 
 
 def find_all_indexes(text, pattern):
