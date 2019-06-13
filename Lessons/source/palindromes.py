@@ -58,11 +58,15 @@ def is_palindrome_recursive(text, left=None, right=None):
                 if text[left].lower() != text[right].lower():
                     return False
                 else:
-                    return is_palindrome_recursive(text, left+=1, right-=1)
+                    left += 1
+                    right -= 1
+                    return is_palindrome_recursive(text, left, right)
             else:
-                return is_palindrome_recursive(text, left, right-=1)
+                right -= 1
+                return is_palindrome_recursive(text, left, right)
         else:
-            return is_palindrome_recursive(text, left+=1, right)
+            left += 1
+            return is_palindrome_recursive(text, left, right)
     return True
 
     # once implemented, change is_palindrome to call is_palindrome_recursive
