@@ -5,6 +5,21 @@ def contains(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement contains here (iteratively and/or recursively)
+    found = False
+    text_index = 0
+    pattern_index = 0
+    while text_index <= len(text)-1 and found == False:
+        if text[text_index] is pattern[pattern_index]:
+            text_index += 1
+            pattern_index +=1
+        elif pattern_index == len(pattern):
+            found == True
+        else:
+            text_index += 1
+            pattern_index == 0
+    return found
+
+
 
 
 def find_index(text, pattern):
@@ -23,15 +38,15 @@ def find_all_indexes(text, pattern):
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
 
 
-def test_string_algorithms(text, pattern):
-    found = contains(text, pattern)
-    print('contains({!r}, {!r}) => {}'.format(text, pattern, found))
-    # TODO: Uncomment these lines after you implement find_index
-    index = find_index(text, pattern)
-    print('find_index({!r}, {!r}) => {}'.format(text, pattern, index))
-    # TODO: Uncomment these lines after you implement find_all_indexes
-    indexes = find_all_indexes(text, pattern)
-    print('find_all_indexes({!r}, {!r}) => {}'.format(text, pattern, indexes))
+# def test_string_algorithms(text, pattern):
+#     found = contains(text, pattern)
+#     print('contains({!r}, {!r}) => {}'.format(text, pattern, found))
+#     # TODO: Uncomment these lines after you implement find_index
+#     index = find_index(text, pattern)
+#     print('find_index({!r}, {!r}) => {}'.format(text, pattern, index))
+#     # TODO: Uncomment these lines after you implement find_all_indexes
+#     indexes = find_all_indexes(text, pattern)
+#     print('find_all_indexes({!r}, {!r}) => {}'.format(text, pattern, indexes))
 
 
 def main():
@@ -53,4 +68,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    print(contains('abra cadabra', 'abra'))
