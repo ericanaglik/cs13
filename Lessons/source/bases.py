@@ -51,19 +51,18 @@ def encode(number, base):
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
     # TODO: Encode number in binary (base 2)
-    place = 1
-    while place < number:
-        place *= base
-    place /= base
-    return_list = []
-    while place >= 1:
-        digit_counter = 0
-        while number - place >= 0:
-            number -= place
-            digit_counter += 1
-        return_list.append(value_digit[digit_counter])
-        place /= base   
-    return ''.join(return_list)
+    numbers = []
+    while number > 0:
+        remainder = number % base
+        if number < base:
+            remainder = number
+        number = number//base
+        numbers.append(value_digit[remainder])
+    numbers.reverse()
+    numbers_string = ''.join(numbers)
+    return numbers_string
+
+
     # TODO: Encode number in hexadecimal (base 16)
     # ...
     # TODO: Encode number in any base (2 up to 36)
@@ -94,7 +93,6 @@ def convert(digits, base1, base2):
     # ...
 
 def convert_fractional(digits, base1, base2):
-    #12.35
     # begin with the decimal fraction and multiply by 2
     # grab the whole number from the result and add to the right of the point
     # convert to string
@@ -112,8 +110,8 @@ def convert_fractional(digits, base1, base2):
 
     to_binary = ""
     
-    while deci != 0:
-        deci *= 2
+    while deci > 0:
+        deci *= base2
         if deci >= 1:
             to_binary += "1"
             deci -= 1
@@ -123,6 +121,7 @@ def convert_fractional(digits, base1, base2):
 
 
 def convert_negative(digits, base1, base2):
+
     pass
 
 
