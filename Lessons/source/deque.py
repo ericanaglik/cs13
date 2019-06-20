@@ -2,6 +2,38 @@
 
 from linkedlist import LinkedList
 
+class LinkedDeque(object):
+
+    def __init__(self, iterable=None):
+        self.list = LinkedList()
+        if iterable is not None:
+            for item in iterable:
+                self.push_front(item)
+
+    def is_empty(self):
+        return self.list.is_empty()
+
+    def length(self):
+        return self.list.length()
+    
+    def push_front(self):
+        self.list.prepend(item)
+
+    def push_back(self):
+        self.list.append(item)
+
+    def pop_front(self):
+        if self.list.is_empty():
+            raise ValueError("list is empty, cannot remove item")
+        self.list.delete(self.head.data)
+
+    def pop_back(self):
+        if self.list.is_empty():
+            raise ValueError("list is empty, cannot remove item")
+        self.list.delete(self.tail.data)
+
+
+
 class ArrayDeque(object):
 
     def __init__(self, iterable=None):
