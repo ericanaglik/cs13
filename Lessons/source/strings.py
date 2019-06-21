@@ -4,7 +4,9 @@ def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement contains here (iteratively and/or recursively)
+    '''Time complexity: best case o(1) when there is an empty pattern
+        worst case: o(n * m) n is length of text m is length of pattern. For every letter
+        in the text we have to check every letter in the pattern'''
     if pattern == "":
         return True
 
@@ -36,7 +38,8 @@ def find_index(text, pattern):
     or None if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_index here (iteratively and/or recursively)
+    '''Time complexity: worst case: o(n * m) n is length of text m is length of pattern. For every letter
+        in the text we have to check every letter in the pattern'''
 
     found = None
     text_index = 0
@@ -69,7 +72,8 @@ def find_all_indexes(text, pattern):
     or an empty list if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_all_indexes here (iteratively and/or recursively)
+    '''Time complexity: worst case: o(n * m) n is length of text m is length of pattern. For every letter
+        in the text we have to check every letter in the pattern'''
 
     indexes = []
 
