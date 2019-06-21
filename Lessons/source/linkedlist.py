@@ -56,7 +56,7 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Running time: O(n) because it finds the length linearly  """
         # Node counter initialized to zero
         node_count = 0
         # Start at the head node
@@ -73,12 +73,12 @@ class LinkedList(object):
     def get_at_index(self, index):
         """Return the item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) if list is empty or item is first
+        Worst case running time: O(n) if index is later in list or not found"""
         # Check if the given index is out of range and if so raise an error
         if not (0 <= index < self.size):
             raise ValueError('List index out of range: {}'.format(index))
-        # TODO: Find the node at the given index and return its data
+
         index_count = 0
         node = self.head
         while (0 <= index_count < self.size):
@@ -90,12 +90,12 @@ class LinkedList(object):
     def insert_at_index(self, index, item):
         """Insert the given item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) if list is empty or item is first
+        Worst case running time: O(n) if index is later in list or not found"""
         # Check if the given index is out of range and if so raise an error
         if not (0 <= index <= self.size):
             raise ValueError('List index out of range: {}'.format(index))
-        # TODO: Find the node before the given index and insert item after it
+    
         elif (index == 0):
             self.prepend(item)
         elif (index == self.size):
@@ -116,7 +116,7 @@ class LinkedList(object):
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time: O(1) because item is always inserted at the end"""
         # Create a new node to hold the given item
         new_node = Node(item)
         # Check if this linked list is empty
@@ -132,7 +132,7 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time: O(1) because item is always inserted at the beginning"""
         # Create a new node to hold the given item
         new_node = Node(item)
         # Check if this linked list is empty
@@ -167,10 +167,8 @@ class LinkedList(object):
     def replace(self, old_data, new_data):
         """Replace the given old_data in this linked list with given new_data
         using the same node, or raise ValueError if old_data is not found.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
-        # TODO: Find the node containing the given old_data and replace its
-        # data with new_data, without creating a new node object
+        Best case running time: O(1) if list is empty or item is first
+        Worst case running time: O(n) if old_data is later in list or not found"""
         node = self.head  # Constant time to assign a variable reference
         found = None
         # Loop until the node is None, which is one node too far past the tail
@@ -190,8 +188,8 @@ class LinkedList(object):
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) if list is empty or item is first
+        Worst case running time: O(n) if item is not found or is later in the list"""
         # Start at the head node
         node = self.head
         # Keep track of the node before the one containing the given item
