@@ -99,6 +99,11 @@ def convert_fractional(digits, base1, base2):
     # string split at decimal 
     # create a var for everything right of the decimal and then multiply by 2
 
+    
+
+    #convert a fractional num from base1 to decimal
+    #convert that decimal fraction to base2
+    
     # split string at decimal
     digits = digits.split(".")
     # convert the whole number to binary 
