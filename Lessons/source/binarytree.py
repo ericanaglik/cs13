@@ -133,7 +133,7 @@ class BinarySearchTree(object):
         # Loop until we descend past the closest leaf node
         while node is not None:
             # TODO: Check if the given item matches the node's data
-            if item == node.data
+            if item == node.data:
                 # Return the found node
                 return node
             # TODO: Check if the given item is less than the node's data
@@ -251,8 +251,8 @@ class BinarySearchTree(object):
         # TODO: Visit this node's data with given function
         visit(node.data)
         # TODO: Traverse right subtree, if it exists
-            if node.right:
-                self._traverse_in_order_recursive(node.right, visit)
+        if node.right:
+            self._traverse_in_order_recursive(node.right, visit)
 
     def _traverse_in_order_iterative(self, node, visit):
         """Traverse this binary tree with iterative in-order traversal (DFS).

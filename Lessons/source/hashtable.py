@@ -26,13 +26,14 @@ class HashTable(object):
     def load_factor(self):
         """Return the load factor, the ratio of number of entries to buckets.
         Best and worst case running time: O(1) under what conditions? Calculating load factor is always constant"""
-        # TODO: Calculate load factor
-        # return ...
-        return self.size/len(self.buckets)
+
+        # Calculate load factor
+        return float(self.size)/len(self.buckets)
 
     def keys(self):
         """Return a list of all keys in this hash table.
         Best and worst case running time: O(n^2) under what conditions? its a double for loop"""
+
         # Collect all keys in each of the buckets
         all_keys = []
         for bucket in self.buckets:
@@ -43,6 +44,7 @@ class HashTable(object):
     def values(self):
         """Return a list of all values in this hash table.
         Best and worst case running time: O(n^2) under what conditions? its a double for loop"""
+
         # Collect all values in each of the buckets
         all_values = []
         for bucket in self.buckets:
@@ -53,6 +55,7 @@ class HashTable(object):
     def items(self):
         """Return a list of all entries (key-value pairs) in this hash table.
         Best and worst case running time: O(n) under what conditions? iterating through individual buckets"""
+
         # Collect all pairs of key-value entries in each of the buckets
         all_items = []
         for bucket in self.buckets:
@@ -74,6 +77,7 @@ class HashTable(object):
         """Return True if this hash table contains the given key, or False.
         Best case running time:O(1) if buckets are empty or key is first
         Worst case running time: O(n) if key doesn't exist or is later in the buckets"""
+
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -85,6 +89,7 @@ class HashTable(object):
         """Return the value associated with the given key, or raise KeyError.
         Best case running time: O(1) is value is first or buckets are empty
         Worst case running time: O(n) if value is later in the list or the key doesnt exist"""
+
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -103,6 +108,7 @@ class HashTable(object):
         Best case running time: O(1) if there are no other items in the bucket
         
         Worst case running time: O(n) because you are searching through the buckets"""
+
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -117,12 +123,11 @@ class HashTable(object):
         # Insert the new key-value entry into the bucket in either case
         bucket.append((key, value))
         self.size += 1
+        # Check if the load factor exceeds a threshold such as 0.75
         if self.load_factor() > 0.75:
+            # If so, automatically resize to reduce the load factor
             self._resize()
-        # TODO: Check if the load factor exceeds a threshold such as 0.75
-        # ...
-        # TODO: If so, automatically resize to reduce the load factor
-        # ...
+        
         
 
 
@@ -155,15 +160,13 @@ class HashTable(object):
         # Option to reduce size if buckets are sparsely filled (low load factor)
         elif new_size is 0:
             new_size = len(self.buckets) / 2  # Half size
-        # TODO: Get a list to temporarily hold all current key-value entries
         
-        # TODO: Create a new list of new_size total empty linked list buckets
-        # ...
-        # TODO: Insert each key-value entry into the new list of buckets,
-        # which will rehash them into a new bucket index based on the new size
-        # ...
+        # Get a list to temporarily hold all current key-value entries
         temporary_entries = self.items()
+        # Create a new list of new_size total empty linked list buckets
         self.__init__(new_size)
+        # Insert each key-value entry into the new list of buckets,
+        # which will rehash them into a new bucket index based on the new size
         for entry in temporary_entries:
             key = entry[0]
             value = entry[1]
