@@ -43,29 +43,30 @@ def is_palindrome_iterative(text):
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
-    chars = string.ascii_lowercase
-    left = 0
-    right = len(text) - 1
-
+    if left is None and right is None:
+        left = 0
+        right = len(text) - 1
+    
+        # an empty string is considered a palindrome
     if text == '':
         return True
 
-    while left < right:
-        if text[left].lower() in chars:
-            if text[right].lower() in chars:
-                if text[left].lower() != text[right].lower():
-                    return False
-                else:
-                    left += 1
-                    right -= 1
-                    return is_palindrome_recursive(text, left, right)
-            else:
-                right -= 1
-                return is_palindrome_recursive(text, left, right)
-        else:
-            left += 1
-            return is_palindrome_recursive(text, left, right)
-    return True
+    if left > right:
+        return True
+
+    if right <= left:
+        return True
+
+    while not text[left].isalnum(): # checks if the character is not a letter
+        left += 1 
+
+    while not text[right].isalnum(): # checks if the character is not a letter
+        right -= 1 
+
+    if text[left].lower() != text[right].lower():
+        return False
+
+    return is_palindrome_recursive(text, left + 1 , right - 1)
 
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
