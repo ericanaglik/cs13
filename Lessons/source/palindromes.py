@@ -25,13 +25,13 @@ def is_palindrome_iterative(text):
     backwards = len(text) - 1
 
     while forwards <= backwards:
-
+        # if its not a letter, skip to the next character
         while not text[forwards].isalpha():
             forwards += 1
-
+        # if its not a letter, skip to the next character
         while not text[backwards].isalpha():
             backwards -= 1
-
+        # if the letters arent the same its not a palindrome
         if text[forwards].lower() != text[backwards].lower():
             return False
 
@@ -47,7 +47,7 @@ def is_palindrome_recursive(text, left=None, right=None):
         left = 0
         right = len(text) - 1
     
-        # an empty string is considered a palindrome
+    # an empty string is considered a palindrome
     if text == '':
         return True
 
@@ -56,13 +56,13 @@ def is_palindrome_recursive(text, left=None, right=None):
 
     if right <= left:
         return True
-
-    while not text[left].isalnum(): # checks if the character is not a letter
+    # if its not a letter, skip to the next character
+    while not text[left].isalnum(): 
         left += 1 
-
-    while not text[right].isalnum(): # checks if the character is not a letter
+    # if its not a letter, skip to the next character
+    while not text[right].isalnum():
         right -= 1 
-
+    # its not a palindrome if they're not the same
     if text[left].lower() != text[right].lower():
         return False
 
