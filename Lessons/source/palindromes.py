@@ -21,27 +21,25 @@ def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
-    chars = string.ascii_lowercase
-    left = 0
-    right = len(text) - 1
+    forwards = 0
+    backwards = len(text) - 1
 
-    if text == '':
-        return True
+    while forwards <= backwards:
 
-    while left < right:
-        if text[left].lower() in chars:
-            if text[right].lower() in chars:
-                if text[left].lower() != text[right].lower():
-                    return False
-                else:
-                    left += 1
-                    right -= 1
-            else:
-                right -= 1
-        else:
-            left += 1
+        while not text[forwards].isalpha():
+            forwards += 1
+
+        while not text[backwards].isalpha():
+            backwards -= 1
+
+        if text[forwards].lower() != text[backwards].lower():
+            return False
+
+        forwards += 1
+        backwards -= 1
+
     return True
-
+    
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
