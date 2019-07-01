@@ -152,7 +152,7 @@ class HashTable(object):
         """Resize this hash table's buckets and rehash all key-value entries.
         Should be called automatically when load factor exceeds a threshold
         such as 0.75 after an insertion (when set is called with a new key).
-        Best and worst case running time: O(n) because we have to move things over potentially
+        Best and worst case running time: O(n)/O(b) because we have to move things over potentially
         Best and worst case space usage: ??? what uses this memory? [TODO]"""
         # If unspecified, choose new size dynamically based on current size
         if new_size is None:
@@ -162,15 +162,17 @@ class HashTable(object):
             new_size = len(self.buckets) / 2  # Half size
         
         # Get a list to temporarily hold all current key-value entries
+        # O(n)
         temporary_entries = self.items()
         # Create a new list of new_size total empty linked list buckets
+        # 2b new buckets => O(b)
         self.__init__(new_size)
         # Insert each key-value entry into the new list of buckets,
         # which will rehash them into a new bucket index based on the new size
         for entry in temporary_entries:
-            key = entry[0]
-            value = entry[1]
-            self.set(key, value)
+            key = entry[0] # O(1)
+            value = entry[1] # O(1)
+            self.set(key, value) # O(l) where l is the length of the linked list
 
 
 def test_hash_table():
