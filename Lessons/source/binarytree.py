@@ -105,6 +105,7 @@ class BinarySearchTree(object):
         TODO: Best case running time: ??? under what conditions?
         TODO: Worst case running time: ??? under what conditions?"""
         # Handle the case where the tree is empty
+        new_node = BinaryTreeNode(item)
         if self.is_empty():
             # TODO: Create a new root node
             self.root = new_node
@@ -390,4 +391,12 @@ def test_binary_search_tree():
 
 
 if __name__ == '__main__':
-    test_binary_search_tree()
+    # test_binary_search_tree()
+    items = [4, 2, 6]
+    tree = BinarySearchTree(items=items)
+    print(tree)
+    print(tree.root)
+    print(tree.root.left)
+
+
+
