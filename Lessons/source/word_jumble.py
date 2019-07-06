@@ -19,6 +19,7 @@ else:
 
     return final_words
 
+# try to find the word 
 def word_search(words, dictionary):
     word_found = []
     for word in words:
@@ -26,6 +27,7 @@ def word_search(words, dictionary):
             word_found.append(word)
 
     return word_found
+
 
 def solve_word_jumble(word_perms):
     final_words = []
@@ -39,9 +41,5 @@ def solve_word_jumble(word_perms):
     return final_words
 
 def main():
-    # Word Jumble 1. Cartoon prompt for final jumble:
-    # "Farley rolled on the barn floor because of his ___."
     words1 = ['TEFON', 'SOKIK', 'NIUMEM', 'SICONU']
-    # circles1 = ['__O_O', 'OO_O_', '____O_', '___OO_']
-    # final1 = ['OO', 'OOOOOO']
     print(solve_word_jumble(words1))
