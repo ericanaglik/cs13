@@ -1,3 +1,5 @@
+from itertools import permutations
+
 def get_file_lines(filename='/usr/share/dict/words'):
     """Return a list of strings on separate lines in the given text file with
     any leading and trailing whitespace characters removed from each line."""
@@ -5,6 +7,23 @@ def get_file_lines(filename='/usr/share/dict/words'):
     with open(filename) as file:
         lines = [line.strip() for line in file]
     return lines
+
+def binary_search_iterative(array, item):
+    left_pointer = 0
+    right_pointer = len(array) - 1
+
+    while left_pointer <= right_pointer:
+        mid_index = (left_pointer + right_pointer) // 2
+        mid_value = array[mid_index].lower()
+
+        if mid_value == item:
+            return mid_index
+        elif mid_value < item:
+            left_pointer = mid_index + 1
+        else:
+            right_pointer = mid_index - 1
+
+    return None
 
 
 def solve_word_jumble(words, circles, final):
@@ -22,6 +41,24 @@ def solve_word_jumble(words, circles, final):
     all_words = get_file_lines()
     # TODO: Solve this word jumble with data structures and algorithms
 
+    combinations = []
+    possible_words = []
+    for word in words:
+        combinations.append(list(permutations(word)))
+
+    for combination in combinations:
+        for words in combination:
+            word = ''.join(words)
+            possible_words.append(word.lower())
+
+    found_words = []
+    for possibility in possible_words:
+
+        if binary_search_iterative(all_words, (possibility)) is not None:
+            found_words.append(possibility)
+            continue
+    print(found_words)
+    return found_words
 
 def main():
     # Word Jumble 1. Cartoon prompt for final jumble:
